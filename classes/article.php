@@ -35,7 +35,8 @@ class article {
 
             if ( count($publicationDate) == 3 ) {
                 list ( $y, $m, $d ) = $publicationDate;
-                $this->date = mktime ( 0, 0, 0, $d, $m, $y );
+                $this->date = mktime ( 0, 0, 0, $m, $d, $y );
+
             }
         }
     }
@@ -51,10 +52,43 @@ class article {
         $st->bindValue( ":title", $this->title, PDO::PARAM_STR );
         $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
         $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
-        var_dump($this);
         $st->execute();
         $this->id = $conn->lastInsertId();
         $conn = null;
+    }
+
+    public function update($id) {
+
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "UPDATE articles SET pubdate=FROM_UNIXTIME(:date), title=:title, summary=:summary, content=:content WHERE id =".$id;
+        $st = $conn->prepare ( $sql );
+        $st->bindValue( ":date", $this->date, PDO::PARAM_INT );
+        $st->bindValue( ":title", $this->title, PDO::PARAM_STR );
+        $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
+        $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
+        $st->execute();
+        $conn = null;
+    }
+
+    public function list_articles(){
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "SELECT * FROM articles";
+        $result = $conn->query($sql);
+        return $result;
+    }
+
+    public function edit_article($id){
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "SELECT * FROM articles WHERE `id`=".$id;
+        $result = $conn->query($sql);
+        return $result;
+    }
+
+    public function delete($id){
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "DELETE FROM articles WHERE `id`=".$id;
+        $result = $conn->query($sql);
+        return $result;
     }
 
 } 

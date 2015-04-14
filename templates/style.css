@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    background-color: #399bff;
+    height: 7vh;
+    position: fixed;
+}
+
+.main-content {
+    width: 100%;
+    min-height: 93vh;
+    height: auto;
+}
+
+.main-content aside {
+    float: left;
+    width: 15%;
+    background-color: #3d464d;
+    height: 93vh;
+    position: fixed;
+    top: 7vh;
+
+}
+
+.main-content .content {
+    float: left;
+    width: 80%;
+    height: 100%;
+    padding-left: 40px;
+    margin-left: 15%;
+    margin-top: 7vh;
+}
+
+.main-content aside {
+
+}
+
+.main-content aside h2 {
+    color: #999d99;
+    margin-left: 20px;
+}
+
+
+.main-content aside ul {
+    padding: 0;
+}
+
+.main-content aside ul li {
+    list-style: none;
+}
+
+.main-content aside ul li a {
+    display: block;
+    color: rgba(255, 255, 255, 1);
+    padding: 3px 20px 3px 30px;
+    position: relative;
+}
+
+.main-content aside ul li:hover a{
+    background-color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+}
+
+.main-content .content h2 {
+    margin-bottom: 20px;
+}
+
+.main-content .content {}
+
+/*form.add_article {*/
+    /*width: 100%;*/
+
+/*}*/
+
+/*form.add_article div {*/
+    /*display: inline-block;*/
+    /*width: 100%;*/
+    /*margin-bottom: 20px;*/
+/*}*/
+
+/*form.add_article div label {*/
+    /*width: 20%;*/
+    /*display: block;*/
+    /*float: left;*/
+/*}*/
+
+/*form.add_article div input,*/
+/*form.add_article div textarea{*/
+    /*width: 80%;*/
+/*}*/
+
+/*form.add_article div.summary textarea {*/
+    /*height: 150px;*/
+/*}*/
+
+/*form.add_article div#content textarea {*/
+    /*height: 400px;*/
+/*}*/
+
+/*form.add_article input[type=submit] {*/
+    /*margin-left: 20%;*/
+/*}*/
+
