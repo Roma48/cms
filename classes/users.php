@@ -10,7 +10,7 @@ class users {
 
     public function login_user($user, $password){
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "SELECT * FROM users WHERE `login`='admin@mail.ru'";
+        $sql = "SELECT * FROM users WHERE `login`='$user'";
         var_dump($conn->query($sql));
         if($conn->query($sql)){
             foreach($conn->query($sql) as $login){
@@ -20,6 +20,10 @@ class users {
                 }
             }
         }
+    }
+
+    public function logout_user(){
+        session_destroy();
     }
 
 

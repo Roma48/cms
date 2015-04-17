@@ -11,16 +11,19 @@ $action = isset( $_GET['action'] ) ? $_GET['action'] : "";
 $edit = isset( $_GET['edit'] ) ? $_GET['edit'] : "";
 $username = isset( $_SESSION['username'] ) ? $_SESSION['username'] : "";
 
-if ( $action != "login" && $action != "logout" && !$username ) {
-    list_article();
+if ( $action != 'login' && $action != 'logout' && !$username ) {
+    login ();
   exit;
 }
 
 
 switch ( $action ) {
-//    case 'login':
-//        login();
-//        break;
+    case 'login':
+        login();
+        break;
+    case 'logout':
+        logout();
+        break;
     case 'add_article':
         add_article();
         break;
@@ -30,11 +33,11 @@ switch ( $action ) {
     case 'delete':
         delete_article();
         break;
-//    case 'list_article':
-//        list_article();
-//        break;
-//    default:
-//        login();
+    case 'list_article':
+        list_article();
+        break;
+    default:
+        login();
 
 }
 
@@ -90,5 +93,12 @@ function login(){
     if(isset($_POST['login'])) {
         $login->login_user($_POST['login'], $_POST['password']);
     }
+
+}
+
+function logout(){
+    $logout = new users();
+    $logout->logout_user();
+    header("Location: ?action=login");
 
 }

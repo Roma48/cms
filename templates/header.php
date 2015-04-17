@@ -16,7 +16,8 @@
     <body>
 
         <header>
-            <a href="/" style="text-decoration: none; width: 245px; display: table-cell; text-align: center" ><h2 style="color: #fff">Online Testing</h2></a>
+            <a href="/" style="float: left; text-decoration: none; width: 245px; display: table-cell; text-align: center" ><h2 style="color: #fff">Online Testing</h2></a>
+            <a class="logout" href="?action=logout" style="float: right; margin-right: 50px; color: #ffffff; margin-top: 20px">Logout</a>
         </header>
 
         <div class="main-content">
