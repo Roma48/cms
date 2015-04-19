@@ -3,6 +3,8 @@
 require( "config.php" );
 require_once(CLASS_PATH."/article.php");
 require_once(CLASS_PATH."/users.php");
+require_once __DIR__.("/facebook/autoload.php");
+use Facebook\FacebookRedirectLoginHelper;
 
 
 
@@ -66,13 +68,21 @@ function edit_article()
 {
     $title = "Edit article";
     $edit = new article();
-    $edit->storeFormValues($_POST);
-    $edit->update($_GET['id']);
+
+    if(isset($_POST['title'])){
+        $edit->storeFormValues($_POST);
+        $edit->update($_GET['id']);
+    }
+
     $result = $edit->edit_article($_GET['id']);
+
+
+
     include("templates/header.php");
     include("templates/edit_article_form.php");
     include("templates/footer.php");
 
+//    header("Location: ?action=list_article");
 
 }
 
@@ -87,12 +97,16 @@ function login(){
     $title = "Login";
     $login = new users();
 
+    $helper = new FacebookRedirectLoginHelper('http://cms.local');
+    $loginUrl = $helper->getLoginUrl();
 
 
     include("templates/login_form.php");
     if(isset($_POST['login'])) {
         $login->login_user($_POST['login'], $_POST['password']);
     }
+
+    $login->login_facebook();
 
 }
 
