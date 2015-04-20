@@ -25,7 +25,7 @@
 
             <article style="border: 1px dotted black">
                 <h2><?php print $article['title']; ?></h2>
-                <div class="summary-article"><?php print $article['summary']; ?></div>
+
             </article>
 
     <?php endforeach; ?>

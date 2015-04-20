@@ -30,14 +30,26 @@ switch ( $action ) {
     case 'add_article':
         add_article();
         break;
+    case 'add_question':
+        add_question();
+        break;
     case 'edit':
         edit_article();
         break;
-    case 'delete':
-        delete_article();
+    case 'delete_test':
+        delete_test();
+        break;
+    case 'delete_question':
+        delete_question();
         break;
     case 'list_article':
         list_article();
+        break;
+    case 'questions':
+        list_questions();
+        break;
+    case 'edit_question':
+        edit_question();
         break;
     default:
         list_article();
@@ -45,7 +57,7 @@ switch ( $action ) {
 }
 
 function list_article(){
-    $title = "List articles";
+    $title = "List tests";
     $list = new article();
     $result = $list->list_articles();
     include("templates/header.php");
@@ -54,13 +66,17 @@ function list_article(){
 }
 
 function add_article(){
-    $title = "Add article";
+    $title = "Add test";
     include("templates/header.php");
     include("templates/add_article_form.php");
     include("templates/footer.php");
     $new_article = new article();
     $new_article->storeFormValues( $_POST );
     $new_article->insert();
+    $new_article->add_table($_POST['title']);
+    if(isset($_POST['title'])){
+        header("Location: ?action=list_article");
+    }
 }
 
 function edit_article(){
@@ -76,11 +92,16 @@ function edit_article(){
     include("templates/footer.php");
 }
 
-function delete_article(){
-    $title = "Delete article";
+function delete_test(){
     $delete = new article();
-    $delete->delete($_GET['id']);
+    $delete->delete_test($_GET['table'] ,$_GET['id']);
     header("Location: ?action=list_article");
+}
+
+function delete_question(){
+    $delete = new article();
+    $delete->delete_question($_GET['table'] ,$_GET['id']);
+    header("Location: ?action=questions&id=".$_GET['table']);
 }
 
 function login(){
@@ -100,4 +121,42 @@ function logout(){
     $logout = new users();
     $logout->logout_user();
     header("Location: /");
+}
+
+function list_questions() {
+    $title = "Test questions";
+    $list = new article();
+    $result = $list->list_questions($_GET['id']);
+    include("templates/header.php");
+    include("templates/list_questions.php");
+    include("templates/footer.php");
+}
+
+function add_question(){
+    $title = "Add question";
+    include("templates/header.php");
+    include("templates/add_question_form.php");
+    include("templates/footer.php");
+    $add_question = new article($_POST);
+    $add_question->storeFormValues($_POST);
+    $add_question->add_question($_GET['id']);
+    if(isset($_POST['question'])){
+        header("Location: ?action=questions&id=".$_GET['id']);
+    }
+}
+
+function edit_question(){
+    $title = "Edit question";
+    $edit = new article();
+    if(isset($_POST['question'])){
+        $edit->storeFormValues($_POST);
+        $edit->update_question($_GET['test'], $_GET['id']);
+    }
+    $result = $edit->edit_question($_GET['test'], $_GET['id']);
+    include("templates/header.php");
+    include("templates/edit_question_form.php");
+    include("templates/footer.php");
+    if(isset($_POST['question'])){
+        header("Location: ?action=questions&id=".$_GET['test']);
+    }
 }

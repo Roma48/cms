@@ -15,7 +15,7 @@ class Database {
         if(!$conn) echo "Не удалось подключится к серверу";
         else
         {
-            $sql = "CREATE TABLE  `articles` (`id` smallint unsigned NOT NULL auto_increment ,`pubdate` DATE NOT NULL , `title` VARCHAR (255) NOT NULL, `summary` text NOT NULL , `content` mediumtext NOT NULL ,  PRIMARY KEY (  `id` ))";
+            $sql = "CREATE TABLE  `articles` (`id` smallint unsigned NOT NULL auto_increment , `title` VARCHAR (255) NOT NULL,  PRIMARY KEY (  `id` ))";
             if ($conn->query($sql))
                 echo "";
             else

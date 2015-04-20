@@ -22,10 +22,10 @@
 
         <div class="main-content">
             <aside>
-                <h2>Articles</h2>
+                <h2>Tests</h2>
                 <ul>
-                    <li><a href="?action=add_article">Add article</a></li>
-                    <li><a href="?action=list_article">List article</a></li>
+                    <li><a href="?action=add_article">Add test</a></li>
+                    <li><a href="?action=list_article">List tests</a></li>
 
                 </ul>
             </aside>

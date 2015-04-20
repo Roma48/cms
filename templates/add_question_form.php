@@ -1,11 +1,11 @@
 
 
 
-<form method="post" class="">
+<form method="post" class="" >
 
     <div class="form-group">
-        <label>Title</label>
-        <input type="text" name="title" class="form-control">
+        <label>Question</label>
+        <input type="text" name="question" class="form-control">
     </div>
 
     <div class="form-group">
