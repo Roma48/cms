@@ -25,26 +25,18 @@ class article {
     }
 
     public function storeFormValues ( $params ) {
-
-        // Сохраняем все параметры
         $this->__construct( $params );
-
-        // Разбираем и сохраняем дату публикации
         if ( isset($params['date']) ) {
             $publicationDate = explode ( '-', $params['date'] );
-
             if ( count($publicationDate) == 3 ) {
                 list ( $y, $m, $d ) = $publicationDate;
                 $this->date = mktime ( 0, 0, 0, $m, $d, $y );
-
             }
         }
     }
 
     public function insert() {
-        // Есть у объекта статьи ID?
         if ( !is_null( $this->id ) ) trigger_error ( "Article::insert(): Attempt to insert an Article object that already has its ID property set (to $this->id).", E_USER_ERROR );
-        // Вставляем статью
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
         $sql = "INSERT INTO articles ( pubdate, title, summary, content ) VALUES ( FROM_UNIXTIME(:date), :title, :summary, :content )";
         $st = $conn->prepare ( $sql );
@@ -58,7 +50,6 @@ class article {
     }
 
     public function update($id) {
-
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
         $sql = "UPDATE articles SET pubdate=FROM_UNIXTIME(:date), title=:title, summary=:summary, content=:content WHERE id =".$id;
         $st = $conn->prepare ( $sql );

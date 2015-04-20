@@ -41,8 +41,6 @@ switch ( $action ) {
 
 }
 
-
-
 function list_article(){
     $title = "List articles";
     $list = new article();
@@ -62,8 +60,7 @@ function add_article(){
     $new_article->insert();
 }
 
-function edit_article()
-{
+function edit_article(){
     $title = "Edit article";
     $edit = new article();
     $edit->storeFormValues($_POST);
@@ -72,8 +69,6 @@ function edit_article()
     include("templates/header.php");
     include("templates/edit_article_form.php");
     include("templates/footer.php");
-
-
 }
 
 function delete_article(){
@@ -84,21 +79,20 @@ function delete_article(){
 }
 
 function login(){
-    $title = "Login";
-    $login = new users();
-
-
-
-    include("templates/login_form.php");
-    if(isset($_POST['login'])) {
-        $login->login_user($_POST['login'], $_POST['password']);
+    if(isset($_SESSION['username'])){
+        header("Location: ?action=list_article");
+    } else {
+        $title = "Login";
+        $login = new users();
+        include("templates/login_form.php");
+        if(isset($_POST['login'])) {
+            $login->login_user($_POST['login'], $_POST['password']);
+        }
     }
-
 }
 
 function logout(){
     $logout = new users();
     $logout->logout_user();
     header("Location: ?action=login");
-
 }

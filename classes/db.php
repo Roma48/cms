@@ -25,7 +25,6 @@ class Database {
 
     public function create_users(){
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-
         if(!$conn) echo "Не удалось подключится к серверу";
         else
         {
