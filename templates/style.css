@@ -9,7 +9,7 @@ header {
     height: 7vh;
     min-height: 60px;
     z-index: 999;
-    position: fixed;
+    /*float: left;*/
 }
 
 .main-content {
@@ -23,7 +23,7 @@ header {
     width: 15%;
     background-color: #3d464d;
     height: 93vh;
-    position: fixed;
+
     top: 7vh;
 
 }
@@ -33,7 +33,7 @@ header {
     width: 80%;
     height: 100%;
     padding-left: 40px;
-    margin-left: 15%;
+
     margin-top: 7vh;
 }
 
@@ -72,6 +72,19 @@ header {
 }
 
 .main-content .content {}
+
+#content {
+
+    margin-top: 100px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#content article {
+    width: 100%;
+    margin-bottom: 20px;
+}
 
 /*form.add_article {*/
     /*width: 100%;*/

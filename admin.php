@@ -1,6 +1,7 @@
 <?php
 
 require( "config.php" );
+//require( "client.php" );
 require_once(CLASS_PATH."/article.php");
 require_once(CLASS_PATH."/users.php");
 require_once __DIR__.("/facebook/autoload.php");
@@ -39,7 +40,7 @@ switch ( $action ) {
         list_article();
         break;
     default:
-        login();
+        list_article();
 
 }
 
@@ -65,25 +66,14 @@ function add_article(){
 function edit_article(){
     $title = "Edit article";
     $edit = new article();
-
     if(isset($_POST['title'])){
         $edit->storeFormValues($_POST);
         $edit->update($_GET['id']);
     }
-
     $result = $edit->edit_article($_GET['id']);
-
-
-
     include("templates/header.php");
     include("templates/edit_article_form.php");
     include("templates/footer.php");
-<<<<<<< HEAD
-=======
-
-//    header("Location: ?action=list_article");
-
->>>>>>> 5efa35f06b6ced41fb7cdf9f571e107c4a65a039
 }
 
 function delete_article(){
@@ -94,7 +84,6 @@ function delete_article(){
 }
 
 function login(){
-<<<<<<< HEAD
     if(isset($_SESSION['username'])){
         header("Location: ?action=list_article");
     } else {
@@ -105,26 +94,10 @@ function login(){
             $login->login_user($_POST['login'], $_POST['password']);
         }
     }
-=======
-    $title = "Login";
-    $login = new users();
-
-    $helper = new FacebookRedirectLoginHelper('http://cms.local');
-    $loginUrl = $helper->getLoginUrl();
-
-
-    include("templates/login_form.php");
-    if(isset($_POST['login'])) {
-        $login->login_user($_POST['login'], $_POST['password']);
-    }
-
-    $login->login_facebook();
-
->>>>>>> 5efa35f06b6ced41fb7cdf9f571e107c4a65a039
 }
 
 function logout(){
     $logout = new users();
     $logout->logout_user();
-    header("Location: ?action=login");
+    header("Location: /");
 }

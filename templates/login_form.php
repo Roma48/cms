@@ -17,11 +17,12 @@
 
 <form method="post" class="form-horizontal" style="width: 500px; position: absolute; top: 35%; left: 35%" >
 
-    <div>
-        <a href="<?php
-        print $loginUrl;
-        ?>">Login Facebook</a>
-    </div>
+<!--    <div>-->
+<!--        <a href="--><?php
+//        print $loginUrl;
+//        ?><!--">Login Facebook</a>-->
+<!--    </div>-->
+
 
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
