@@ -21,6 +21,20 @@ class users {
         }
     }
 
+    public function login_facebook(){
+        $helper = new FacebookRedirectLoginHelper();
+        try {
+            $session = $helper->getSessionFromRedirect();
+        } catch(FacebookRequestException $ex) {
+            echo "error";
+        } catch(\Exception $ex) {
+            echo "error1";
+        }
+        if ($session) {
+            echo "login";
+        }
+    }
+
     public function logout_user(){
         session_destroy();
     }
